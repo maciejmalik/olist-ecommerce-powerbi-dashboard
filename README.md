@@ -1,34 +1,56 @@
 # Olist E-commerce Analytics Dashboard (Power BI)
 
-This project presents an interactive **Power BI dashboard** built using the **Olist Brazilian e-commerce dataset**.  
-The goal of the project was to transform raw transactional data into a structured analytical model and create a dashboard that enables analysis of sales performance, customer behavior, delivery efficiency, and regional distribution of orders.
+![Dashboard](images/dashboard.png)
 
-The report combines:
+## Project Overview
 
-- data transformation in Power Query  
-- a structured data model  
-- DAX measures  
-- interactive visualizations  
+This project presents an interactive **Power BI dashboard** built using the **Olist Brazilian E-commerce dataset**.  
+The goal of the project was to transform raw transactional data into a structured analytical model and create a dashboard that support business analysis.
+
+The report integrates **data preparation, data modeling, DAX calculations, and interactive visualizations** to support business analysis.
+---
+
+## Business Goal
+
+The main objective of this dashboard is to provide a clear overview of the platform's operational and sales performance.
+
+The report helps answer business questions such as:
+
+- Which regions generate the most orders and revenue?
+- Which product categories drive the highest sales?
+- What payment methods are used most frequently?
+- How efficient is the delivery process?
+- What percentage of orders are delivered late?
 
 ---
 
-# Dashboard
+## Dataset
 
-![Dashboard](images/dashboard.png)
+The project uses the **Olist Brazilian E-commerce Public Dataset**.
 
-The dashboard provides a high-level overview of business performance using KPI indicators such as:
+Dataset source:
 
-- **Total Revenue**
-- **Total Orders**
-- **Late Orders Rate**
-- **Total Customers**
+https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
-Additional visuals allow exploration of:
+The dataset includes information about:
 
-- weekly order trends  
-- monthly performance metrics  
-- revenue by payment type  
-- top product categories  
+- orders
+- customers
+- sellers
+- products
+- payments
+- reviews
+- geolocation
+
+---
+
+## Tech Stack
+
+The dashboard was built using the following tools:
+
+- **Power BI** – dashboard development and data modeling  
+- **Power Query** – data cleaning and transformation  
+- **DAX (Data Analysis Expressions)** – calculated measures and business logic  
 
 ---
 
@@ -40,8 +62,8 @@ The report includes a geographic visualization showing the distribution of order
 
 The map uses:
 
-- **bubble size** to represent order volume  
-- **tooltips** to display additional information such as revenue, number of customers, and delivery performance.
+- **bubble size** to represent order volume
+- **tooltips** to display additional metrics such as revenue, customers, and delivery performance
 
 This allows quick identification of regions with the highest concentration of orders.
 
@@ -51,23 +73,25 @@ This allows quick identification of regions with the highest concentration of or
 
 ![Data Model](images/data_model.png)
 
-The report is built on a relational model integrating several tables from the Olist dataset.
+The report is built on a relational model integrating multiple tables from the Olist dataset.
 
-The structure follows a **star-like schema**, where the **Orders** table acts as the central fact table connected to dimension tables.
+The structure follows a **star-like schema**, where the **Orders** table acts as the central fact table.
 
 ### Dimension tables
+
 - Customer  
 - Seller  
 - Product  
 - Date  
 
 ### Fact tables
+
 - Orders  
 - Order Items  
 - Order Payments  
 - Order Reviews  
 
-To keep the model organized and maintainable, all calculations were placed in a dedicated **Measures** table.
+To keep the model organized and easier to maintain, all calculations were placed in a dedicated **Measures** table.
 
 ---
 
@@ -77,37 +101,91 @@ To keep the model organized and maintainable, all calculations were placed in a 
 
 ![Measures](images/measures_2.png)
 
-All DAX calculations were organized in a dedicated table called **Measures**.  
-This improves readability and helps separate business logic from raw data tables.
+All DAX calculations were organized in a dedicated table called **Measures**, which improves model readability and separates business logic from raw data tables.
 
-Examples of implemented measures include:
+Implemented measures include:
 
-- Total Revenue  
-- Total Orders  
-- Total Customers  
-- Average Order Value  
-- Average Review Score  
-- Average Shipping Days  
-- Late Orders  
-- Late Orders Rate  
-- Canceled Orders  
-- Product Orders  
-- Product Value  
-- previous month comparison measures  
+- All Orders
+- Average Category Product Value
+- Average Delivery Delay
+- Average Order Value
+- Average Review Score
+- Average Shipping Days
+- Canceled Orders Rate
+- Card Payments Rate
+- Installment Usage Rate
+- Late Orders
+- Late Orders Rate
+- On Time Delivery Rate
+- Previous Month Late Orders
+- Previous Month Orders
+- Previous Month Revenue
+- Product Orders
+- Product Value
+- Total Canceled Orders
+- Total Customers
+- Total Orders
+- Total Revenue
 
-These measures power KPI cards, trend charts, and analytical visuals across the report.
+These measures power KPI cards, trend charts, payment analysis, delivery metrics, and category-level insights.
+
+---
+
+# Dashboard Visualizations
+
+The dashboard contains several analytical visuals designed to support business analysis.
+
+### KPI Cards
+
+Key performance indicators summarize overall platform performance.
+
+Metrics include:
+
+- Total Revenue
+- Total Orders
+- Late Orders Rate
+- Total Customers
+
+---
+
+### Orders Trend
+
+A line chart presents **weekly order volume**, allowing identification of trends and seasonal demand changes.
+
+---
+
+### Revenue by Payment Type
+
+A bar chart compares revenue generated by different payment methods, including:
+
+- Credit Card
+- Boleto
+- Voucher
+- Debit Card
+
+This helps identify the most commonly used payment options.
+
+---
+
+### Top Product Categories
+
+A table visual presents the top product categories based on:
+
+- order volume
+- total revenue
+- average order value
 
 ---
 
 # Custom Tooltips
 
-To provide additional contextual insights without overcrowding the main visuals, the report includes **custom tooltip pages**.
+Custom tooltip pages were implemented to provide more contextual information without cluttering the main visuals.
 
 ### Chart Tooltip
 
 ![Chart Tooltip](images/chart_tooltips.png)
 
-This tooltip is used in the weekly orders trend chart and displays detailed information about the selected date, including the number of orders.
+The tooltip used in the order trend chart shows detailed information for the selected date, including the number of orders.
 
 ---
 
@@ -115,34 +193,32 @@ This tooltip is used in the weekly orders trend chart and displays detailed info
 
 ![Map Tooltip](images/map_tooltips.png)
 
-The map tooltip displays additional regional information such as:
+The geographic tooltip provides additional regional metrics such as:
 
-- state  
-- total orders  
-- total revenue  
-- total customers  
-- average shipping days  
-- canceled orders rate  
-
-This improves the analytical value of the geographic visualization.
+- state
+- total orders
+- total revenue
+- total customers
+- average shipping days
+- canceled orders rate
 
 ---
 
 # Data Preparation (Power Query)
 
-Data cleaning and transformation were performed in **Power Query**.
+Data preparation was performed using **Power Query**.
 
-Key steps included:
+Main transformation steps included:
 
-- assigning correct data types (text, currency, date, datetime)  
-- removing rows with errors or missing values  
-- renaming columns into more readable business labels  
-- creating surrogate keys using index columns  
-- merging selected tables with the Orders table to retrieve internal model keys  
-- standardizing text values (for example replacing underscores and applying proper case)  
-- removing columns not required for reporting  
+- assigning appropriate data types
+- removing rows with errors or missing values
+- renaming columns into business-friendly labels
+- creating surrogate keys using index columns
+- merging tables to retrieve internal keys
+- standardizing text values
+- removing unnecessary columns
 
-The **Category Translation** table was used to enrich product categories with English names and was disabled from load after the final category field was created.
+The **Category Translation** table was used to translate product categories and was disabled from load after the final category field was created.
 
 The **Geolocation** table was also excluded from the final model because the report focuses on state-level geographic analysis.
 
@@ -150,50 +226,52 @@ The **Geolocation** table was also excluded from the final model because the rep
 
 # Date Modeling
 
-A dedicated **Date dimension** was created using **DAX** to support time-based analysis.
+A dedicated **Date dimension** was created in **DAX** to support time-based analysis.
 
-The table includes fields such as:
+The table includes:
 
-- Date  
-- Year  
-- Month  
-- Day  
-- Month Name  
-- Week Day  
-- Weekend indicator  
-- Quarter  
-- Week Number  
-- Week Start Date  
+- Date
+- Year
+- Month
+- Day
+- Month Name
+- Week Day
+- Weekend indicator
+- Quarter
+- Week Number
+- Week Start Date
 
-Additionally, several datetime columns in the **Orders** table were converted into separate date fields to simplify analysis:
+Additionally, datetime fields in the **Orders** table were converted into separate date columns such as:
 
-- Purchase Date  
-- Approved Date  
-- Carrier Delivery Date  
-- Customer Delivery Date  
-- Delivery Estimated Date  
+- Purchase Date
+- Approved Date
+- Carrier Delivery Date
+- Customer Delivery Date
+- Delivery Estimated Date
 
-Additional calculated columns were also created to support delivery analysis:
+Additional calculated fields were created for delivery analysis:
 
-- Delivery Days  
-- Is Late  
-- Late Days  
-
-Using separate date fields improves filtering, grouping, and time-based calculations.
+- Delivery Days
+- Is Late
+- Late Days
 
 ---
 
 # Model Optimization
 
-To make the semantic model cleaner and easier to use, several technical fields were hidden from report view.
+To keep the semantic model clean and easier to use, several technical columns were hidden from report view.
 
 These include:
 
-- internal ID columns  
-- foreign keys used only for relationships  
-- original datetime columns replaced by date fields  
-- helper columns created during transformation  
+- internal ID columns
+- foreign keys used only for relationships
+- original datetime fields replaced by date columns
+- intermediate helper columns
 
-This approach improves usability and keeps the model focused on business-friendly fields.
-- custom tooltip implementation  
-- business intelligence reporting  
+This makes the model easier to navigate and more business-oriented.
+
+---
+
+# Files
+
+- **OLIST.pbit** – Power BI template file containing the report structure, model, and calculations
