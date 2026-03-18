@@ -75,8 +75,6 @@ This allows quick identification of regions with the highest concentration of or
 
 The report is built on a relational model integrating multiple tables from the Olist dataset.
 
-The structure follows a **star-like schema**, where the **Orders** table acts as the central fact table.
-
 ### Dimension tables
 
 - Customer  
