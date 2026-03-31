@@ -1,275 +1,69 @@
 # Olist E-commerce Analytics Dashboard (Power BI)
 
-![Dashboard](images/dashboard.png)
+Interactive Power BI dashboard built on the **Olist Brazilian E-commerce dataset**, designed to analyze sales performance, customer activity, delivery quality, and category-level results.
 
-## Project Overview
+## Dashboard
 
-This project presents an interactive **Power BI dashboard** built using the **Olist Brazilian E-commerce dataset**.  
-The goal of the project was to transform raw transactional data into a structured analytical model and create a dashboard that support business analysis.
+[Add video link here]
 
-The report integrates **data preparation, data modeling, DAX calculations, and interactive visualizations** to support business analysis.
----
+The video presents:
+- interactive filters
+- hierarchy exploration
+- drill-through navigation
+- tooltip-based insights
+- page navigation buttons
+- KPI monitoring across multiple report views
 
-## Business Goal
+## Note
 
-The main objective of this dashboard is to provide a clear overview of the platform's operational and sales performance.
+Since I do not currently use an active Power BI Pro sharing setup, this project is presented as a recorded dashboard walkthrough instead of a live published report.  
+The video shows the dashboard’s navigation, filters, drill-through page, tooltips, and key business views.
 
-The report helps answer business questions such as:
+## Report Structure
 
-- Which regions generate the most orders and revenue?
-- Which product categories drive the highest sales?
-- What payment methods are used most frequently?
-- How efficient is the delivery process?
-- What percentage of orders are delivered late?
+The dashboard includes four report pages:
 
----
+- **Main Dashboard** — overview of revenue, orders, customers, payment methods, and top categories
+- **Map** — geographic analysis of orders across Brazil
+- **Logistics** — late deliveries, shipping time, and review-related performance
+- **Category Detail** — drill-through page from the main dashboard for deeper category analysis
+
+## Key Features
+
+- navigation buttons for page switching
+- back button for easier report exploration
+- filter panel with **Year** and **State** filters
+- drill-through from the main dashboard to category details
+- custom tooltips
+- KPI cards
+- trend analysis
+- geographic insights
+- logistics and delivery analysis
+
+## Data & Technical Work
+
+The project included:
+- data cleaning and transformation in **Power Query**
+- building a **multi-fact analytical data model**
+- creating supporting dimension tables for reporting and filtering
+- developing a dedicated **date table**
+- creating multiple **DAX measures** for revenue, orders, customers, delays, shipping time, reviews, and trend analysis
+- organizing calculations in a separate **Measures** table for better readability
+- improving model usability by hiding technical fields and keeping the report layer more business-friendly
+
+The report combines several fact tables with supporting dimensions to enable analysis from different business perspectives, including sales, logistics, geography, and product categories.
+
+## Tools Used
+
+- **Power BI**
+- **Power Query**
+- **DAX**
 
 ## Dataset
 
-The project uses the **Olist Brazilian E-commerce Public Dataset**.
-
-Dataset source:
-
+**Olist Brazilian E-commerce Public Dataset**  
+Source: Kaggle  
 https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
-The dataset includes information about:
-
-- orders
-- customers
-- sellers
-- products
-- payments
-- reviews
-- geolocation
-
----
-
-## Tech Stack
-
-The dashboard was built using the following tools:
-
-- **Power BI** – dashboard development and data modeling  
-- **Power Query** – data cleaning and transformation  
-- **DAX (Data Analysis Expressions)** – calculated measures and business logic  
-
----
-
-# Geographic Analysis
-
-![Map](images/map.png)
-
-The report includes a geographic visualization showing the distribution of orders across Brazilian states.
-
-The map uses:
-
-- **bubble size** to represent order volume
-- **tooltips** to display additional metrics such as revenue, customers, and delivery performance
-
-This allows quick identification of regions with the highest concentration of orders.
-
----
-
-# Data Model
-
-![Data Model](images/data_model.png)
-
-The report is built on a relational model integrating multiple tables from the Olist dataset.
-
-### Dimension tables
-
-- Customer  
-- Seller  
-- Product  
-- Date  
-
-### Fact tables
-
-- Orders  
-- Order Items  
-- Order Payments  
-- Order Reviews  
-
-To keep the model organized and easier to maintain, all calculations were placed in a dedicated **Measures** table.
-
----
-
-# Measures
-
-![Measures](images/measures.png)
-
-![Measures](images/measures_2.png)
-
-All DAX calculations were organized in a dedicated table called **Measures**, which improves model readability and separates business logic from raw data tables.
-
-Implemented measures include:
-
-- All Orders
-- Average Category Product Value
-- Average Delivery Delay
-- Average Order Value
-- Average Review Score
-- Average Shipping Days
-- Canceled Orders Rate
-- Card Payments Rate
-- Installment Usage Rate
-- Late Orders
-- Late Orders Rate
-- On Time Delivery Rate
-- Previous Month Late Orders
-- Previous Month Orders
-- Previous Month Revenue
-- Product Orders
-- Product Value
-- Total Canceled Orders
-- Total Customers
-- Total Orders
-- Total Revenue
-
-These measures power KPI cards, trend charts, payment analysis, delivery metrics, and category-level insights.
-
----
-
-# Dashboard Visualizations
-
-The dashboard contains several analytical visuals designed to support business analysis.
-
-### KPI Cards
-
-Key performance indicators summarize overall platform performance.
-
-Metrics include:
-
-- Total Revenue
-- Total Orders
-- Late Orders Rate
-- Total Customers
-
----
-
-### Orders Trend
-
-A line chart presents **weekly order volume**, allowing identification of trends and seasonal demand changes.
-
----
-
-### Revenue by Payment Type
-
-A bar chart compares revenue generated by different payment methods, including:
-
-- Credit Card
-- Boleto
-- Voucher
-- Debit Card
-
-This helps identify the most commonly used payment options.
-
----
-
-### Top Product Categories
-
-A table visual presents the top product categories based on:
-
-- order volume
-- total revenue
-- average order value
-
----
-
-# Custom Tooltips
-
-Custom tooltip pages were implemented to provide more contextual information without cluttering the main visuals.
-
-### Chart Tooltip
-
-![Chart Tooltip](images/chart_tooltips.png)
-
-The tooltip used in the order trend chart shows detailed information for the selected date, including the number of orders.
-
----
-
-### Map Tooltip
-
-![Map Tooltip](images/map_tooltips.png)
-
-The geographic tooltip provides additional regional metrics such as:
-
-- state
-- total orders
-- total revenue
-- total customers
-- average shipping days
-- canceled orders rate
-
----
-
-# Data Preparation (Power Query)
-
-Data preparation was performed using **Power Query**.
-
-Main transformation steps included:
-
-- assigning appropriate data types
-- removing rows with errors or missing values
-- renaming columns into business-friendly labels
-- creating surrogate keys using index columns
-- merging tables to retrieve internal keys
-- standardizing text values
-- removing unnecessary columns
-
-The **Category Translation** table was used to translate product categories and was disabled from load after the final category field was created.
-
-The **Geolocation** table was also excluded from the final model because the report focuses on state-level geographic analysis.
-
----
-
-# Date Modeling
-
-A dedicated **Date dimension** was created in **DAX** to support time-based analysis.
-
-The table includes:
-
-- Date
-- Year
-- Month
-- Day
-- Month Name
-- Week Day
-- Weekend indicator
-- Quarter
-- Week Number
-- Week Start Date
-
-Additionally, datetime fields in the **Orders** table were converted into separate date columns such as:
-
-- Purchase Date
-- Approved Date
-- Carrier Delivery Date
-- Customer Delivery Date
-- Delivery Estimated Date
-
-Additional calculated fields were created for delivery analysis:
-
-- Delivery Days
-- Is Late
-- Late Days
-
----
-
-# Model Optimization
-
-To keep the semantic model clean and easier to use, several technical columns were hidden from report view.
-
-These include:
-
-- internal ID columns
-- foreign keys used only for relationships
-- original datetime fields replaced by date columns
-- intermediate helper columns
-
-This makes the model easier to navigate and more business-oriented.
-
----
-
-# Files
-
-- **OLIST.pbit** – Power BI template file containing the report structure, model, and calculations
+## Project File
+- `OLIST.pbit` — Power BI template file with the report structure, model, and calculations
