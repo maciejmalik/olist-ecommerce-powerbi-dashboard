@@ -55,6 +55,14 @@ The project included:
 
 The report combines several fact tables with supporting dimensions to enable analysis from different business perspectives, including sales, logistics, geography, and product categories.
 
+## Model Documentation
+
+As an additional project element, I created a dedicated **documentation table and report page** using `INFO.VIEW()` functions in Power BI.  
+This documentation view helps present model elements such as measures, columns, tables, and relationships in a structured format.
+
+I also added descriptions for measures. The descriptions were generated with AI based on a few example descriptions written manually first, and then standardized across the model for consistency.
+
+![Model Documentation](images/documentation.png)
 ## Tools Used
 
 - **Power BI**
