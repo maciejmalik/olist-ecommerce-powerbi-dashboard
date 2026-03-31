@@ -4,7 +4,7 @@ Interactive Power BI dashboard built on the **Olist Brazilian E-commerce dataset
 
 ## Dashboard
 
-[▶ Watch the dashboard walkthrough](./Dashboard_Video.mp4)
+[▶ Watch dashboard demo](https://youtu.be/FWq1ADlOnDA)
 
 The video presents:
 - interactive filters
