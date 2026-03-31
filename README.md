@@ -4,6 +4,8 @@ Interactive Power BI dashboard built on the **Olist Brazilian E-commerce dataset
 
 ## Dashboard
 
+The dashboard is presented through a short walkthrough video — click the image below to watch it.
+
 [![Dashboard Demo](images/dashboard.png)](https://youtu.be/FWq1ADlOnDA)
 
 The video presents:
@@ -66,4 +68,6 @@ Source: Kaggle
 https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
 ## Project File
-- `OLIST.pbit` — Power BI template file with the report structure, model, and calculations
+- `OLIST.pbit` — Power BI template file with the dashboard structure, data model, Power Query transformations, and DAX calculations
+- `dashboard_video.mp4` — dashboard walkthrough video showing the main interactions and report functionality
+- `images/` — screenshots of the four report pages included in the project
